@@ -15,7 +15,7 @@
  * Each factor is scored 0.0 to 5.0. The weighted sum is then normalized to 0–100.
  */
 
-import type { ScoringResult, Recommendation } from "@/types/analysis";
+import type { ScoringResult, Recommendation } from "../types/analysis";
 
 // Sectors ranked by historical stability/growth (0–5 scale)
 const SECTOR_SCORES: Record<string, number> = {

@@ -14,7 +14,7 @@ const router = Router();
  * It follows a clear 4-step pipeline so the frontend can receive a unified JSON response.
  */
 router.get("/:ticker", async (req: Request, res: Response): Promise<void> => {
-  const ticker = req.params.ticker.toUpperCase().trim();
+  const ticker = String(req.params.ticker).toUpperCase().trim();
 
   try {
     // ── Step 1: Fetch Live Data from Yahoo Finance ──
