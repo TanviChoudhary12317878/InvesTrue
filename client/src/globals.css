@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-border: var(--panel-border);
+  --color-judge-blue: var(--judge-blue);
+  --color-bull-green: var(--bull-green);
+  --color-bear-red: var(--bear-red);
+  --color-warning-amber: var(--warning-amber);
+  --color-primary-text: var(--text-primary);
+  --color-secondary-text: var(--text-secondary);
+  --color-muted-text: var(--text-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  /* Light Mode — Bright Theme with Subtle Lavender & Logo Colors */
+  --bg: #F8F7FA; /* Very subtle lavender-tinted off-white */
+  --panel: #FFFFFF;
+  --panel-border: #EAE6F0; /* Subtle lavender gray border */
+  --judge-blue: #334177; /* Deep slate blue matching 'Inves' text */
+  --bull-green: #10B981; 
+  --bear-red: #8B2C39; /* Ruby rust red matching the right gem */
+  --warning-amber: #B8860B; /* Golden matching 'True' text */
+  --text-primary: #1A1F36; /* Deep navy-black */
+  --text-secondary: #5C627A; /* Slate gray */
+  --text-muted: #A3A8B8;
+}
+
+.dark {
+  /* Dark Mode — Deep Theme with Subtle Lavender & Logo Colors */
+  --bg: #0F0D15; /* Deep space with very slight purple tint */
+  --panel: #171520; /* Dark panel with subtle lavender undertone */
+  --panel-border: #2D273B; /* Lavender-tinted dark border */
+  --judge-blue: #5C73C4; /* Brightened slate blue for dark mode */
+  --bull-green: #3FB950;
+  --bear-red: #B84453; /* Brightened ruby rust red */
+  --warning-amber: #D29922;
+  --text-primary: #F0EFF5; /* Off-white with faint lavender */
+  --text-secondary: #9B98A8; /* Lavender-gray text */
+  --text-muted: #646073;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-primary-text);
+  font-family: var(--font-sans), Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-panel-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted-text); }
+
+/* ─── Hover Lift ─── */
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.35s;
+  will-change: transform;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.12), 0 6px 16px rgba(0,0,0,0.06) !important;
+}
+
+/* ─── Scroll Reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Ticker ─── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker 40s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.animate-ticker:hover { animation-play-state: paused; }
+
+/* ─── Float ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+.animate-float      { animation: float 6s ease-in-out infinite; }
+.animate-float-slow { animation: float 9s ease-in-out infinite; }
+.animate-float-d2   { animation: float 6s ease-in-out 2s infinite; }
+
+/* ─── Glow ─── */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(59,130,246,0.25); }
+  50%       { box-shadow: 0 0 32px rgba(59,130,246,0.6); }
+}
+.animate-glow { animation: glowPulse 2.5s ease-in-out infinite; }
+
+/* ─── Circle draw ─── */
+@keyframes drawCircle {
+  from { stroke-dashoffset: 377; }
+  to   { stroke-dashoffset: 34;  }
+}
+.animate-draw-circle {
+  animation: drawCircle 2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* ─── Shimmer skeleton ─── */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+.shimmer-wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-panel-border);
+}
+.shimmer-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  animation: shimmer 1.6s infinite;
+}
+
+/* ─── Candlestick pulse ─── */
+@keyframes candlePulse {
+  0%, 100% { opacity: 0.04; }
+  50%       { opacity: 0.08; }
+}
+.animate-candle { animation: candlePulse 4s ease-in-out infinite; }
+
+/* ─── Gradient move ─── */
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient-move {
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite;
+}
+
+/* ─── Fade scale in ─── */
+@keyframes fadeScaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-fade-scale { animation: fadeScaleIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+
+/* ─── Marquee (for hero badge) ─── */
+@keyframes badgePulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.75; }
+}
+.animate-badge { animation: badgePulse 3s ease-in-out infinite; }
+
+/* ─── Bar fill ─── */
+@keyframes barFill {
+  from { width: 0; }
+}
+.animate-bar-fill { animation: barFill 1.4s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+
+/* ─── Bull & Bear Strike Animations ─── */
+.visible .animate-bull-strike {
+  animation: bullStrike 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+@keyframes bullStrike {
+  0% { transform: translateX(-100%) scale(0.9); opacity: 0; }
+  60% { transform: translateX(5%) translateY(0) scale(1); opacity: 1; }
+  80% { transform: translateX(0) translateY(-8%) rotate(3deg); opacity: 1; }
+  100% { transform: translateX(0) translateY(0) rotate(0); opacity: 1; }
+}
+
+.visible .animate-bear-strike {
+  animation: bearStrike 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+@keyframes bearStrike {
+  0% { transform: translateX(100%) scale(0.9); opacity: 0; }
+  60% { transform: translateX(-5%) translateY(0) scale(1); opacity: 1; }
+  80% { transform: translateX(0) translateY(8%) rotate(-3deg); opacity: 1; }
+  100% { transform: translateX(0) translateY(0) rotate(0); opacity: 1; }
+}

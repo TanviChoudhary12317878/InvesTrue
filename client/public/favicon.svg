@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Glowing subtle shadow/backdrop -->
+  <path d="M12,52 L52,12 L52,32 L32,52 Z" fill="#D4A017" opacity="0.15" filter="blur(2px)"/>
+  
+  <!-- Thick arrow shaft -->
+  <path d="M14,50 L46,18" stroke="#B8820A" stroke-width="12" stroke-linecap="round"/>
+  <!-- Highlight on shaft -->
+  <path d="M14,50 L46,18" stroke="#F6AD55" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Arrow tip body -->
+  <polygon points="56,8 60,8 60,12 36,36 32,32" fill="#B8820A"/>
+  <polygon points="34,8 60,8 60,34" fill="#D4A017"/>
+
+  <!-- Golden gradients / sharp edges for the tip -->
+  <polygon points="38,12 56,12 56,30" fill="#E8C86A"/>
+  <polygon points="56,8 60,8 56,12" fill="#FFFFFF"/>
+</svg>
